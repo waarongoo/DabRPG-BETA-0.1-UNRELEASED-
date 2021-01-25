@@ -20,27 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 import replitdb
-username = ("")
 import asyncio
 import time
 loginSuccess = 0
 db = replitdb.AsyncClient()
-
-
+username=("")
 async def signup():
-  
-	username = input("[Server] What do you want your username to be?")
+	username=input("[Server] What do you want your username to be?")
 	while username in await db.all:
-		  print("[Server] That is already a username. Try something else.")
-		  username=input("[Server] What do you want your username to be?")
-	password = input("[Server] What do you want your password to be?")
+		print("[Server] That is already a username. Try something else.")
+		username=input("[Server] What do you want your username to be?")
+	password=input("[Server] What do you want your password to be?")
 	await db.set_dict({username:password})
 	await db.set(data=str(await db.view('data'))+ '\n' + username + '=' + password)
-  
 
 
 async def login():
-
   username=input("[Server] What is your username?")
   password=input("[Server] What is your password?")
 
